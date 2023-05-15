@@ -8,9 +8,11 @@
         {
             TaxBrackets = new List<TaxBracket>
             {
-                new TaxBracket { LowerLimit = 0, UpperLimit = 1000, TaxPercent = 0.1 },
-                new TaxBracket { LowerLimit = 1000, UpperLimit = 5000, TaxPercent = 0.2 },
-                new TaxBracket { LowerLimit = 5000, UpperLimit = double.PositiveInfinity, TaxPercent = 0.35 }
+                new TaxBracket { LowerLimit = 0, UpperLimit = 1000, TaxPercent = 10 },
+                new TaxBracket { LowerLimit = 1000, UpperLimit = 5000, TaxPercent = 20 },
+                new TaxBracket { LowerLimit = 5000, UpperLimit = 10000, TaxPercent = 35 },
+                new TaxBracket { LowerLimit = 10000, UpperLimit = double.PositiveInfinity, TaxPercent = 40 }
+
             };
         }
 
@@ -25,7 +27,7 @@
                 if(usualIncome <= taxBracket.UpperLimit)
                 {
                     double taxableIncome = Math.Min(remainingAmountAfterTaxDeduction, taxBracket.UpperLimit - usualIncome);
-                    double taxAmount = taxableIncome * taxBracket.TaxPercent;
+                    double taxAmount = taxableIncome * (taxBracket.TaxPercent)/100;
                     totalTax += taxAmount;
                     remainingAmountAfterTaxDeduction -= taxableIncome;
 
